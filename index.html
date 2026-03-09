@@ -28,7 +28,8 @@
     </div>
   </header>
 
-  <div class="bg-primary text-white text-center py-5" id="secret-trigger">
+  <!-- Click this blue section once to reveal hidden content -->
+  <div class="bg-primary text-white text-center py-5" id="secret-trigger" style="cursor: pointer;">
     <div class="container">
       <h2 class="display-5 fw-bold mb-2">Middle School Math Practice</h2>
       <p class="lead mb-1">6th–8th Grade Mathematics – Chestatee Academy</p>
@@ -121,6 +122,7 @@
       </ul>
     </section>
 
+    <!-- Hidden section -->
     <div id="hidden-tools" style="display: none;" class="mt-5 pt-5 border-top">
       <div class="alert alert-warning text-center small mb-4">
         <strong>Supplemental Exploration Materials</strong> – For independent review only
@@ -164,18 +166,21 @@
     </div>
   </footer>
 
+  <!-- Single-click reveal script (easier) -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const trigger = document.getElementById('secret-trigger');
-      let lastClick = 0;
-
-      trigger.addEventListener('click', () => {
-        const now = new Date().getTime();
-        if (now - lastClick < 300) {
+      if (trigger) {
+        console.log('Trigger element found – click the blue banner to unlock');
+        trigger.addEventListener('click', () => {
           document.getElementById('hidden-tools').style.display = 'block';
-        }
-        lastClick = now;
-      });
+          console.log('Hidden tools revealed');
+          // Optional: smooth scroll to the hidden section
+          document.getElementById('hidden-tools').scrollIntoView({ behavior: 'smooth' });
+        });
+      } else {
+        console.error('Trigger element not found');
+      }
     });
   </script>
 
